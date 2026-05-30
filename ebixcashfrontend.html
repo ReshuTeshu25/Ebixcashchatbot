@@ -1,0 +1,431 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EbixCash AI Assistant</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+}
+
+/* HEADER */
+
+header{
+    background:#003b8e;
+    color:white;
+    padding:15px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    font-weight:500;
+}
+
+/* HERO */
+
+.hero{
+    height:90vh;
+    background:linear-gradient(rgba(0,0,0,.45),
+    rgba(0,0,0,.45)),
+    url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+}
+
+.hero-content h1{
+    font-size:60px;
+    margin-bottom:15px;
+}
+
+.hero-content p{
+    font-size:22px;
+    margin-bottom:25px;
+}
+
+.btn{
+    padding:15px 35px;
+    background:#ff7a00;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:18px;
+}
+
+/* SERVICES */
+
+.services{
+    padding:70px;
+}
+
+.services h2{
+    text-align:center;
+    margin-bottom:40px;
+    color:#003b8e;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.card i{
+    font-size:40px;
+    color:#003b8e;
+    margin-bottom:15px;
+}
+
+/* CHAT BUTTON */
+
+.chat-toggle{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:#003b8e;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+    cursor:pointer;
+    box-shadow:0 8px 25px rgba(0,0,0,.3);
+    z-index:999;
+}
+
+/* CHATBOT */
+
+.chatbot{
+    position:fixed;
+    bottom:100px;
+    right:20px;
+    width:400px;
+    height:620px;
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 40px rgba(0,0,0,.25);
+    display:none;
+    flex-direction:column;
+    z-index:1000;
+}
+
+.chat-header{
+    background:#1c2f90;
+    color:white;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.bot-info{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.avatar{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:white;
+    color:#1c2f90;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+}
+
+.close-btn{
+    cursor:pointer;
+    font-size:22px;
+}
+
+.quick-actions{
+    padding:10px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    border-bottom:1px solid #eee;
+}
+
+.quick-actions button{
+    border:none;
+    padding:8px 12px;
+    border-radius:20px;
+    background:#eef3ff;
+    cursor:pointer;
+    color:#003b8e;
+}
+
+.chat-body{
+    flex:1;
+    padding:15px;
+    overflow-y:auto;
+    background:#f8f9ff;
+}
+
+.message{
+    max-width:80%;
+    padding:10px 14px;
+    margin-bottom:10px;
+    border-radius:12px;
+}
+
+.bot{
+    background:white;
+}
+
+.user{
+    background:#003b8e;
+    color:white;
+    margin-left:auto;
+}
+
+.chat-input{
+    display:flex;
+    padding:12px;
+    border-top:1px solid #ddd;
+}
+
+.chat-input input{
+    flex:1;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.chat-input button{
+    margin-left:10px;
+    background:#003b8e;
+    color:white;
+    border:none;
+    padding:12px 18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">EbixCash</div>
+
+    <nav>
+        <a href="#">Travel</a>
+        <a href="#">Forex</a>
+        <a href="#">Insurance</a>
+        <a href="#">Payments</a>
+        <a href="#">Support</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Welcome to EbixCash</h1>
+        <p>Travel • Forex • Insurance • Payments</p>
+        <button class="btn">Explore Services</button>
+    </div>
+</section>
+
+<section class="services">
+    <h2>Our Services</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <i class="fas fa-plane"></i>
+            <h3>Travel Booking</h3>
+        </div>
+
+        <div class="card">
+            <i class="fas fa-money-bill-wave"></i>
+            <h3>Forex Exchange</h3>
+        </div>
+
+        <div class="card">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Insurance</h3>
+        </div>
+
+        <div class="card">
+            <i class="fas fa-wallet"></i>
+            <h3>Payments</h3>
+        </div>
+
+    </div>
+</section>
+
+<!-- CHAT BUTTON -->
+
+<div class="chat-toggle" onclick="toggleChat()">
+    <i class="fas fa-robot"></i>
+</div>
+
+<!-- CHATBOT -->
+
+<div class="chatbot" id="chatbot">
+
+    <div class="chat-header">
+
+        <div class="bot-info">
+            <div class="avatar">
+                <i class="fas fa-robot"></i>
+            </div>
+
+            <div>
+                <strong>EbixCash AI</strong><br>
+                <small>24×7 Customer Assistant</small>
+            </div>
+        </div>
+
+        <div class="close-btn" onclick="toggleChat()">
+            ✕
+        </div>
+
+    </div>
+
+    <div class="quick-actions">
+        <button onclick="quickMsg('Travel Booking')">Travel</button>
+        <button onclick="quickMsg('Forex Rates')">Forex</button>
+        <button onclick="quickMsg('Insurance')">Insurance</button>
+        <button onclick="quickMsg('Payments')">Payments</button>
+        <button onclick="quickMsg('Support')">Support</button>
+    </div>
+
+    <div class="chat-body" id="chatBody">
+
+        <div class="message bot">
+            👋 Welcome to EbixCash AI Assistant.
+            How can I help you today?
+        </div>
+
+    </div>
+
+    <div class="chat-input">
+        <input
+        type="text"
+        id="userInput"
+        placeholder="Ask EbixCash AI...">
+
+        <button onclick="sendMessage()">
+            <i class="fas fa-paper-plane"></i>
+        </button>
+    </div>
+
+</div>
+
+<script>
+
+function toggleChat(){
+    const chat=document.getElementById('chatbot');
+
+    if(chat.style.display==="flex"){
+        chat.style.display="none";
+    }else{
+        chat.style.display="flex";
+    }
+}
+
+function quickMsg(text){
+    document.getElementById('userInput').value=text;
+    sendMessage();
+}
+
+async function sendMessage(){
+
+    let input = document.getElementById("userInput");
+    let message = input.value.trim();
+
+    if(message === "") return;
+
+    let chat = document.getElementById("chatBody");
+
+    chat.innerHTML += `
+    <div class="message user">
+        ${message}
+    </div>`;
+
+    input.value = "";
+
+    chat.scrollTop = chat.scrollHeight;
+
+    try{
+
+        const response = await fetch(
+            "http://127.0.0.1:5000/chat",
+            {
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body: JSON.stringify({
+                    message: message
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        chat.innerHTML += `
+        <div class="message bot">
+            ${data.response}
+        </div>`;
+
+        chat.scrollTop = chat.scrollHeight;
+
+    }catch(error){
+
+        console.error(error);
+
+        chat.innerHTML += `
+        <div class="message bot">
+            Backend connection failed.
+        </div>`;
+    }
+}
+</script>
+
+</body>
+</html>
+```
